@@ -8,7 +8,7 @@ class Solution {
             trainingEnergy = trainingEnergy + energy[i];
         }
 
-        int needTrainEnergy = trainingEnergy + 1 - initialEnergy;
+        int needTrainEnergy = Math.max(0,trainingEnergy + 1 - initialEnergy);
 
         System.out.println(needTrainEnergy + "needs this much training for energy");
 
@@ -91,8 +91,25 @@ class Solution {
 }
 
 
-//this code fails
+//
+//this code passes now
 //experience = [19, 69, 86]
 //energy = [98, 2, 47]
 //initialEnergy = 49
 //initialExpeirence=25;
+//returns 26 for training experience
+//125 in total
+
+
+///now this fails case 108
+
+//energy = [69,22,93,68,57,76,54,72,8,78,88,15,58,61,25,70,58,91,79,22,91,74,90,75,31,53,31,7,51,96,76,17,64,89,83,54,28,33,32,45,20]
+//exp = [51,81,46,80,56,7,46,74,64,20,84,66,13,91,49,30,75,43,74,88,82,51,72,4,80,30,10,19,40,27,21,71,24,94,79,13,40,28,63,85,70]
+//initialenergy = 11;
+//initialexperience= 23;
+
+//last maxdiff should be 2323-2294 (2294 is the training for energy)...//
+//output is 2302
+//but should be 2323
+//last maxdiff should be 29
+//last debug
