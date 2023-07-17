@@ -16,7 +16,8 @@ class Solution {
         int biggestNumber = experience[biggestIndex];
 
         int needTrainExperience = recursiveMax(initialExperience, experience, biggestNumber, biggestIndex);
-        System.out.println(needTrainExperience + "training for experience");
+        System.out.println(needTrainExperience + " training for experience");
+
 
         int totalTraining = needTrainEnergy + needTrainExperience;
         return totalTraining;
@@ -29,10 +30,19 @@ class Solution {
         }
 
         if (experience.length == 1) {
-            int calc = experience[0]+1-(initialExperience);
-            System.out.println(maxnumber + "biggest number");
-            System.out.println(calc);
-            return Math.max(calc, 0);
+            if (experience[0] < initialExperience){
+                return 0;
+            }
+            else if (experience[0]>=initialExperience){
+                int calc = experience[0]+1-(initialExperience);
+                //calc could be a negative number
+                return Math.max(calc,0);
+            }
+            else{
+                int compareToSecond = maxnumber+1 - experience[0]-initialExperience;
+                return Math.min(compareToSecond,0);
+
+            }
         }
 
         if ((sumAll + initialExperience) <= maxnumber) {
@@ -54,26 +64,31 @@ class Solution {
         }
     }
 
-        public int findMaxIndex ( int[] experience){
-            int maxIndex = 0;
-            int max = 0;
-            for (int i = 0; i < experience.length; i++) {
-                if (experience[i] > max) {
-                    max = experience[i];
-                    maxIndex = i;
-                }
+    public int findMaxIndex ( int[] experience){
+        int maxIndex = 0;
+        int max = 0;
+        for (int i = 0; i < experience.length; i++) {
+            if (experience[i] > max) {
+                max = experience[i];
+                maxIndex = i;
             }
-            return maxIndex;
         }
-
-        public static void main(String[] args){
-            Solution s = new Solution();
-            int[] energy = {58,47,100,71,47,6,92,82,35,16,50,15,42,5,2,45,22};
-            int[] experience = {77,83,99,76,75,66,58,84,44,98,70,41,48,7,10,61,28};
-            int initialEnergy = 94;
-            int initialExperience = 70;
-            System.out.println(s.minNumberOfHours(initialEnergy, initialExperience, energy, experience));
-        }
+        return maxIndex;
     }
 
+    public static void main(String[] args){
+        Solution s = new Solution();
+        int[] energy = {1};
+        int[] experience = {3};
+        int initialEnergy = 2;
+        int initialExperience = 4;
+        System.out.println(s.minNumberOfHours(initialEnergy, initialExperience, energy, experience));
+    }
+}
 
+
+//this code fails
+//experience = [19, 69, 86]
+//energy = [98, 2, 47]
+//initialEnergy = 49
+//initialExpeirence=25;
