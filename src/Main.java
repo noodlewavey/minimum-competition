@@ -30,17 +30,20 @@ class Solution {
         }
 
         if (experience.length == 1) {
-            if (experience[0] < initialExperience){
+            int firstTwo = experience[0]+initialExperience;
+            System.out.println("firsttwo" + firstTwo);
+            System.out.println("is greeater than maxnumber" + (firstTwo > maxnumber));
+            if (experience[0] < initialExperience && (firstTwo > maxnumber)){
                 return 0;
             }
             else if (experience[0]>=initialExperience){
                 int calc = experience[0]+1-(initialExperience);
-                //calc could be a negative number
+                //calc could only be positive?
                 return Math.max(calc,0);
             }
             else{
                 int compareToSecond = maxnumber+1 - experience[0]-initialExperience;
-                return Math.min(compareToSecond,0);
+                return Math.max((compareToSecond),0);
 
             }
         }
@@ -78,11 +81,12 @@ class Solution {
 
     public static void main(String[] args){
         Solution s = new Solution();
-        int[] energy = {1};
-        int[] experience = {3};
-        int initialEnergy = 2;
-        int initialExperience = 4;
+        int[] energy = {98, 2, 47};
+        int[] experience = {19, 69, 86};
+        int initialEnergy = 49;
+        int initialExperience = 25;
         System.out.println(s.minNumberOfHours(initialEnergy, initialExperience, energy, experience));
+        //supposed to return 26 for experience training
     }
 }
 
